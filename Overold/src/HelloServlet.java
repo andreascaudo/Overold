@@ -29,7 +29,8 @@ public class HelloServlet extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-    
+    	 PrintWriter out5 = null;
+ 		out5.println("<html>");
          // Set the response MIME type of the response message
          response.setContentType("text/html");
          // Allocate a output writer to write the response message into the network socket
