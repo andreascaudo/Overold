@@ -28,7 +28,7 @@ public class HelloServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
+            throws IOException, ServletException 
     	 PrintWriter out5 = null;
  		out5.println("<html>");
          // Set the response MIME type of the response message
