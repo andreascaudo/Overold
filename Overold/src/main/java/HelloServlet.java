@@ -18,7 +18,7 @@ public class HelloServlet extends HttpServlet {
     public HelloServlet() {
         super();
         // TODO Auto-generated constructor stub
-    }
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
