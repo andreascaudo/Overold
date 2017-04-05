@@ -10,11 +10,16 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 
 /**
@@ -24,6 +29,7 @@ public class HelloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String regioneSelezionata;
 	private PrintWriter out;
+	private ArrayList<SubitoItem> subitoItem;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -58,7 +64,19 @@ public class HelloServlet extends HttpServlet {
 		String search = "http://www.subito.it/annunci-"+ region + "/vendita/usato/?q=" + item;
 		System.out.println(search);
 		search = search.replaceAll(" ","+");
-		out.print(executePost(search));
+		String temp = executePost(search);
+		ArrayList<String> tempSubitoDraft = new ArrayList<String>();  
+		subitoItem = new ArrayList<SubitoItem>();  
+		Matcher matcher = Pattern.compile("<article class=(.*?)</article>").matcher(temp);
+		while (matcher.find()) {
+			subitoItem.add(new SubitoItem(matcher.group()));
+		}
+		
+		for(SubitoItem i : subitoItem){
+			out.print(i.toString());
+		}
+		
+		
 	}
 
 	public static String executePost(String targetURL) {
